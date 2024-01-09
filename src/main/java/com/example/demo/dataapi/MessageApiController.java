@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Message;
 import com.example.demo.service.MessageService;
 
-import reactor.core.publisher.Mono;
-
 @RestController
 public class MessageApiController implements IMessageApi {
 
@@ -19,9 +17,9 @@ public class MessageApiController implements IMessageApi {
 
     @Override
     public ResponseEntity<Void> createMessage(Message message) throws Exception {
-        Mono<Message> createdMessage = messageService.createMessage(message);
+        Message createdMessage = messageService.createMessage(message);
 
-        return ResponseEntity.created(URI.create(String.format("localhost:8000/message/%d", createdMessage.block().getId()))).build();
+        return ResponseEntity.created(URI.create(String.format("localhost:8000/message/%d", createdMessage.getId()))).build();
     }
 
     @Override
@@ -32,8 +30,8 @@ public class MessageApiController implements IMessageApi {
     }
 
     @Override
-    public ResponseEntity<Mono<Message>> getMessageById(Integer id) throws Exception {
-        Mono<Message> message = messageService.getMessageById(id);
+    public ResponseEntity<Message> getMessageById(Integer id) throws Exception {
+        Message message = messageService.getMessageById(id);
 
         return ResponseEntity.ok(message);
     }

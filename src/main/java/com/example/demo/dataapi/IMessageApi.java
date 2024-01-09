@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.model.Message;
 
-import reactor.core.publisher.Mono;
-
 public interface IMessageApi {
     @GetMapping(value = "/message/{id}", produces = "application/json")
-    ResponseEntity<Mono<Message>> getMessageById(@PathVariable(name = "id") Integer id) throws Exception;
+    ResponseEntity<Message> getMessageById(@PathVariable(name = "id") Integer id) throws Exception;
 
     @PostMapping(value = "/message", consumes = "application/json")
     ResponseEntity<Void> createMessage(@RequestBody Message message) throws Exception;
