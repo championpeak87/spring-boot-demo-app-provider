@@ -9,14 +9,20 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "TB_MESSAGE")
+@Table(name = "TB_USER")
 @Data
-public class TBMessage {
+public class TBUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "MESSAGE")
-    private String message;
+    @Column(name = "USERNAME")
+    private String username;
+
+    @Column(name = "age")
+    private Integer age;
+
+    @Column(name = "email")
+    private String email;
 }
